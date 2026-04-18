@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/TheIco2/BedrockJSONSchema/main/Schema.config.json",
+  "$id": "https://raw.githubusercontent.com/TheIco2/BedrockJSONSchema/refs/heads/master/Schema.config.json",
   "title": "SlabsPlus Generator Configuration",
   "description": "Configuration file for the SlabsPlus Minecraft Bedrock addon generator. Defines all blocks to generate with their properties, textures, and behaviors. Run generate.ps1 (Windows) or generate.sh (Linux/Mac) after editing.",
   "type": "object",
