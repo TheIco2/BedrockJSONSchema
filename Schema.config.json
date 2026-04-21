@@ -52,7 +52,7 @@
         "type": {
           "type": "string",
           "description": "Block generation type:\n• vertical_slab — One vertical slab. Recipes: source_block ↔ vertical (1:1 each way)\n• horizontal_slab — One horizontal slab. Recipe: 3 source_blocks → 6 slabs (shaped)\n• slab_set — Both horizontal + vertical. Recipes: 3 blocks → 6 horizontal + h↔v (1:1 each way)",
-          "enum": ["vertical_slab", "horizontal_slab", "slab_set"]
+          "enum": ["block", "vertical_slab", "horizontal_slab", "slab_set", "pipe", "stair", "horizontal_stair", "wall", "fence", "fence_gate", "door", "trapdoor", "button", "pressure_plate", "sign", "hanging_sign", "bed", "chair", "table", "sofa", "shelf", "pillar", "window", "custom", "none"]
         },
         "display_name": {
           "type": "string",
@@ -577,6 +577,41 @@
           "description": "Material render method for the block texture.\n• opaque — Fully solid, no transparency\n• alpha_test — Binary transparency (fully visible or invisible)\n• blend — Smooth semi-transparency\n• double_sided — Renders both face sides",
           "default": "alpha_test",
           "enum": ["opaque", "alpha_test", "blend", "double_sided"]
+        },
+        "uv": {
+          "type": "object",
+          "description": "Custom per-face UV mapping for horizontal slab geometry. Only used when type is horizontal_slab or slab_set. Each face defines origin and size within the 16×16 texture space. Defaults: sides show bottom half of texture, top/bottom show full texture. Omitted faces use defaults.",
+          "additionalProperties": false,
+          "properties": {
+            "north": { "$ref": "#/$defs/face_uv" },
+            "south": { "$ref": "#/$defs/face_uv" },
+            "east":  { "$ref": "#/$defs/face_uv" },
+            "west":  { "$ref": "#/$defs/face_uv" },
+            "up":    { "$ref": "#/$defs/face_uv" },
+            "down":  { "$ref": "#/$defs/face_uv" }
+          }
+        }
+      }
+    },
+    "face_uv": {
+      "type": "object",
+      "description": "UV mapping for a single face. 'uv' is the top-left origin in the 16×16 texture space, 'uv_size' is the width and height to sample. Negative uv_size values flip the texture on that axis.",
+      "required": ["uv", "uv_size"],
+      "additionalProperties": false,
+      "properties": {
+        "uv": {
+          "type": "array",
+          "description": "UV origin [x, y] in pixels within the 16×16 texture.",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "uv_size": {
+          "type": "array",
+          "description": "UV sample size [width, height] in pixels. Negative values flip the texture.",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2
         }
       }
     }
