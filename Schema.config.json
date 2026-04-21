@@ -40,7 +40,7 @@
   "$defs": {
     "block_entry": {
       "type": "object",
-      "required": ["id", "type", "display_name", "source_block", "texture", "sound"],
+      "required": ["id", "type", "display_name", "texture", "sound"],
       "additionalProperties": false,
       "properties": {
         "id": {
